@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 
 namespace spaceship
@@ -10,6 +11,8 @@ namespace spaceship
 
         public Asteroid(int speed){
             this.speed = speed;
+            Random rnd = new Random();
+            position = new Vector2(1380,rnd.Next(0, 721));
         }
 
         public void Update(GameTime gameTime){

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -17,7 +18,8 @@ public class Game1 : Game
     SpriteFont timerFont;
 
     Ship player = new();
-    Asteroid testAsteroid = new(250);
+
+    Controller controller = new();
 
     public Game1()
     {
@@ -51,10 +53,11 @@ public class Game1 : Game
     {
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-
-        player.Update(gameTime);
-        testAsteroid.Update(gameTime);
-
+        
+        controller.PlayerUpdate(gameTime);
+        controller.CounterUpdate(gameTime);
+        controller.AsteroidUpdate(gameTime);
+        
         base.Update(gameTime);
     }
 
@@ -64,8 +67,20 @@ public class Game1 : Game
 
         _spriteBatch.Begin();
         _spriteBatch.Draw(spaceSprite, new Vector2(0,0), Color.White);
-        _spriteBatch.Draw(shipSprite, player.position -  new Vector2(34,50), Color.White);
-        _spriteBatch.Draw(asteroidSprite, testAsteroid.position - new Vector2(testAsteroid.radius, testAsteroid.radius),Color.White);
+        controller.AsteroidDraw(asteroidSprite,_spriteBatch);
+        _spriteBatch.Draw(shipSprite, controller.ship.position -  new Vector2(34,50), Color.White);
+        
+        if(!controller.inGame){
+            string menuMessage = "PRESS ENTER TO BEGIN";
+            //This gives u the W/H of the string when drawn to screen
+            Vector2 sizeOfText = gameFont.MeasureString(menuMessage);
+            
+            int hW = _graphics.PreferredBackBufferWidth/2;
+
+            _spriteBatch.DrawString(gameFont,menuMessage, new Vector2(hW - sizeOfText.X / 2, 200),Color.White);
+        }
+        
+        _spriteBatch.DrawString(timerFont, "TIME: " + Math.Floor(controller.totalTime), new Vector2(100,100), Color.White);
         _spriteBatch.End();
 
         base.Draw(gameTime);
