@@ -10,6 +10,10 @@ namespace rpg
         private int speed = 300;
         private Dir direction = Dir.Down;
         private bool isMoving = false;
+        private KeyboardState kStateOld = Keyboard.GetState();
+
+        public SpriteAnimation anim;
+        public SpriteAnimation[] animations = new SpriteAnimation[4];
 
         public Vector2 Position
         {
@@ -77,7 +81,24 @@ namespace rpg
                         position.Y += speed * dt;
                         break;
                 }
+                anim = animations[(int)direction];
+                anim.Update(gameTime);
             }
+            else
+            {
+                anim.setFrame(1);
+            }
+
+            if (kState.IsKeyDown(Keys.Space) && kStateOld.IsKeyUp(Keys.Space))
+            {
+                Projectile.projectiles.Add(new Projectile(position, direction));
+                anim.setFrame(0);
+            }
+
+            kStateOld = kState;
+
+            anim.Position = new Vector2(position.X - 48, position.Y - 48);
+            
         }
     }
 }
