@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shooting_gallery", "shootin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spaceship", "spaceship\spaceship.csproj", "{317DCE38-A354-4E41-B58C-3CA36A8ADE25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rpg", "rpg\rpg.csproj", "{58C8B29B-2728-48E5-82A6-1A3342C30577}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{317DCE38-A354-4E41-B58C-3CA36A8ADE25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{317DCE38-A354-4E41-B58C-3CA36A8ADE25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{317DCE38-A354-4E41-B58C-3CA36A8ADE25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58C8B29B-2728-48E5-82A6-1A3342C30577}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58C8B29B-2728-48E5-82A6-1A3342C30577}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58C8B29B-2728-48E5-82A6-1A3342C30577}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58C8B29B-2728-48E5-82A6-1A3342C30577}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

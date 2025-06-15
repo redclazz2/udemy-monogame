@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "C#: Asteroid Debug",
+            "name": "C#: RPG Debug",
             "type": "dotnet",
             "request": "launch",
-            "projectPath": "${workspaceFolder}/spaceship/spaceship.csproj"
+            "projectPath": "${workspaceFolder}/rpg/rpg.csproj"
         }
 
     ]
