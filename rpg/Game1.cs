@@ -91,7 +91,14 @@ public class Game1 : Game
 
         foreach (Enemy e in Enemy.enemies)
         {
-            e.Update(gameTime, player.Position);
+            e.Update(gameTime, player.Position, player.dead);
+
+            int sum = 32 + e.radius;
+
+            if (Vector2.Distance(player.Position, e.Position) < sum)
+            {
+                player.dead = true;
+            }
         }
 
         foreach (Projectile proj in Projectile.projectiles)
@@ -111,6 +118,11 @@ public class Game1 : Game
         Projectile.projectiles.RemoveAll(p => p.Collided);
         Enemy.enemies.RemoveAll(e => e.Dead);
 
+        if (!player.dead)
+        {
+            Controller.Update(gameTime, skull);
+        }
+        
         base.Update(gameTime);
     }
 
@@ -121,7 +133,11 @@ public class Game1 : Game
         _spriteBatch.Begin(camera);
 
         _spriteBatch.Draw(background, new Vector2(-500, -500), Color.White);
-        player.anim.Draw(_spriteBatch);
+
+        if (!player.dead)
+        {
+            player.anim.Draw(_spriteBatch);    
+        }
 
         foreach (Enemy e in Enemy.enemies)
         {
