@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Comora;
 
 namespace rpg;
@@ -11,6 +13,12 @@ enum Dir
     Up,
     Left,
     Right
+}
+
+public static class Sounds
+{
+    public static SoundEffect projectileSound;
+    public static Song song;
 }
 
 public class Game1 : Game
@@ -69,6 +77,10 @@ public class Game1 : Game
 
         player.anim = player.animations[0];
 
+        Sounds.projectileSound = Content.Load<SoundEffect>("Sounds/blip");
+        Sounds.song = Content.Load<Song>("Sounds/nature");
+        MediaPlayer.Play(Sounds.song);
+
         Enemy.enemies.Add(new Enemy(new Vector2(100, 100), skull));
         Enemy.enemies.Add(new Enemy(new Vector2(700, 100), skull));
     }
@@ -122,7 +134,7 @@ public class Game1 : Game
         {
             Controller.Update(gameTime, skull);
         }
-        
+
         base.Update(gameTime);
     }
 
@@ -136,7 +148,7 @@ public class Game1 : Game
 
         if (!player.dead)
         {
-            player.anim.Draw(_spriteBatch);    
+            player.anim.Draw(_spriteBatch);
         }
 
         foreach (Enemy e in Enemy.enemies)
